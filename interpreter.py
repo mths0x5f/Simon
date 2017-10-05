@@ -1,7 +1,10 @@
 import json
 from time import sleep
 import itertools
+import logging
 from xml.etree.ElementTree import Element as XMLElement, tostring, XML
+
+logger = logging.getLogger()
 
 class Interpreter():
     def __init__(self, main_thread):
@@ -9,7 +12,7 @@ class Interpreter():
         # self.load()
 
     def load(self):
-        with open('probe.json') as script:
+        with open('scripts/probe.json') as script:
             self.data = json.load(script)
 
         version = self.data['version'].split(':')
@@ -17,10 +20,10 @@ class Interpreter():
             self._smp_v1_interpreter(self.data)
 
     def _smp_v1_interpreter(self, data):
-
+        print(data['setup']['operators'], data['probes'])
         for x in data['setup']['operators']:        
             for probe in data['probes']:
-                print(probe, x)
+                logger.info(probe + x)
                 # launch a process for each probe
                 self.__process_queue(data['process']['queue'], probe)
                 
