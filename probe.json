@@ -1,0 +1,41 @@
+{
+  "version": "smp:1",
+  "probes": ["3492124980", "3493323385"],
+  "setup": {
+    "operators": [
+      "Algar Telecom",
+      "Claro",
+      "Oi",
+      "TIM",
+      "Vivo"
+    ]
+  },
+
+  "process": {
+    "interval": 2,
+    "queue": [
+      {
+        "ns": "algar:probes:test",
+        "name": "downloadspeed",
+        "params": {
+          "url": "http://algartelecom.com.br"
+        }
+      },
+      {
+        "ns": "algar:probes:command",
+        "name": "operatorselect",
+        "params": {
+          "operator": "Claro"
+        }
+      },
+      {
+        "ns": "algar:probes:test",
+        "name": "uploadspeed",
+        "params": {
+          "operator": "Claro"
+        }
+      }
+    ]
+  }
+
+}
