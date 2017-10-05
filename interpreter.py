@@ -31,9 +31,10 @@ class Interpreter():
         for test in tests:
             xml = XMLElement(test['name'], test.get('params', {}),
                              xmlns=test['ns'], tid='')
-            print(tostring(xml))
+            print(tostring(xml), probe)
             try:
-                self.main_thread.make_iq_set(xml, probe+'@localhost/Probe1.0').send()
+                jid = probe+'@'+'xmpp.algartelecom.com.br'+'/Probe1.0'
+                self.main_thread.make_iq_set(xml, jid).send()
             except Exception as e:
                 pass
             # send iq set stanza

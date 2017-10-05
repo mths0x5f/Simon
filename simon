@@ -2,12 +2,14 @@
 
 import sleekxmpp
 import logging
+import colorlog
+
 import interpreter
 
 
 class BestBot(sleekxmpp.ClientXMPP):
     def __init__(self, jid, password):
-        super(BestBot, self).__init__(jid, password)        
+        super().__init__(jid, password)        
         self.add_event_handler("session_start", self.session_start)
         self.add_event_handler("got_online", self.got_online, threaded=True)
 
@@ -23,9 +25,15 @@ class BestBot(sleekxmpp.ClientXMPP):
 
 if __name__ == '__main__':
     
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(levelname)-8s %(message)s')
+    logging.getLogger().setLevel('INFO')
 
-    xmpp = BestBot('matheus@localhost/Probe1.0', 'matheus')
+    console = logging.StreamHandler()
+    color_fmt = colorlog.ColoredFormatter('%(asctime)s %(log_color)s'
+                                          '%(levelname)s\t%(message)s')
+    console.setFormatter(color_fmt)
+    logging.getLogger().addHandler(console) 
+    
+
+    xmpp = BestBot('simon@xmpp.algartelecom.com.br/Simon', 'simon')
     xmpp.connect()
     xmpp.process(block=True)

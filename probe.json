@@ -1,6 +1,6 @@
 {
   "version": "smp:1",
-  "probes": ["3492124980", "3493323385"],
+  "probes": ["34999718071", "qqq"],
   "setup": {
     "operators": [
       "Algar Telecom",
@@ -10,7 +10,6 @@
       "Vivo"
     ]
   },
-
   "process": {
     "interval": 2,
     "queue": [
@@ -22,10 +21,11 @@
         }
       },
       {
-        "ns": "algar:probes:command",
+        "ns": "algar:probes:test",
         "name": "operatorselect",
         "params": {
-          "operator": "Claro"
+          "operator": "Claro",
+          "teste": ""
         }
       },
       {
@@ -37,5 +37,4 @@
       }
     ]
   }
-
 }
