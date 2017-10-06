@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Entraince point for Simon bot.
+
 import sleekxmpp
 import argparse
 import logging
@@ -13,14 +15,15 @@ import interpreter
 class BestBot(sleekxmpp.ClientXMPP):
     def __init__(self, jid, password):
         super().__init__(jid, password)        
-        self.add_event_handler("session_start", self.session_start)
-        self.add_event_handler("got_online", self.got_online, threaded=True)
+        self.add_event_handler("session_start", self.session_start,
+                               threaded=True)
 
     def session_start(self, event):
         self.send_presence()
         self.get_roster()
+        self.loop()
 
-    def got_online(self, event):
+    def loop(self):
         qq = interpreter.Interpreter(self)
         while not self.stop.is_set():
             qq.load()
