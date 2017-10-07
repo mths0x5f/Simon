@@ -1,6 +1,6 @@
 {
   "version": "smp:1",
-  "probes": ["34999718071"],
+  "probes": ["json"],
   "setup": {
     "operators": [
       "Algar Telecom",

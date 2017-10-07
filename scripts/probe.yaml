@@ -1,6 +1,6 @@
 version: smp:1
 
-probes: ['34999718071', qqq]
+probes: [yaml,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,y]
 
 setup:
   operators: [Algar Telecom, Claro, Oi, TIM, Vivo]

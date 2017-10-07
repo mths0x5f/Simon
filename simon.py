@@ -2,32 +2,13 @@
 
 # Entraince point for Simon bot.
 
-import sleekxmpp
 import argparse
 import logging
 import colorlog
 import configparser
 import sys
 
-import interpreter
-
-
-class BestBot(sleekxmpp.ClientXMPP):
-    def __init__(self, jid, password):
-        super().__init__(jid, password)        
-        self.add_event_handler("session_start", self.session_start,
-                               threaded=True)
-
-    def session_start(self, event):
-        self.send_presence()
-        self.get_roster()
-        self.loop()
-
-    def loop(self):
-        qq = interpreter.Interpreter(self)
-        while not self.stop.is_set():
-            qq.load()
-            print('++++++')
+import simon
 
 
 if __name__ == '__main__':
@@ -62,6 +43,6 @@ if __name__ == '__main__':
                                conf['default'].get('host'))
     password = '{}'.format(conf['default'].get('password'))
 
-    xmpp = BestBot(jid, password)
+    xmpp = simon.BestBot(jid, password)
     xmpp.connect()
     xmpp.process(block=True)
